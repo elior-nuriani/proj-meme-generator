@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Meme World</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body onload="onInitEditor()">
+    <div class="screen" onclick="toggleMenu()"></div>
+    <header class="main-header">
+    </header>
+
+    <main>
+        <div class="editor-container flex row space-between align-center container">
+            <div class="canvas-container">
+                <canvas class="img-canvas"></canvas>
+            </div>
+
+            <div class="control-box flex column center ">
+                <input class="line first" type="text" oninput="onSetText('first')" placeholder="Change Text here !">
+
+                <div class="first-box flex row center">
+                    <button onclick="onMoveLine('up')"> <img src="icons/arrow-up.png"></button>
+                    <button onclick="onMoveLine('down')"> <img src="icons/arrow-down.jpg"> </button>
+                    <button onclick="onSwitchLines()"><img
+                            src="icons/up-and-down-opposite-double-arrows-side-by-side.png"></button>
+                    <button onclick="onRemoveLine()"><img src="icons/trash.png"></button>
+                </div>
+
+                <div class="second-box flex row center wrap">
+                    <button onclick="onSetFontSize(1)"> <img src="icons/increase font - icon.png"> </button>
+                    <button onclick="onSetFontSize(0)"> <img src="icons/decrease font - icon.png"> </button>
+                    <button class="btn-align-right" onclick="onAlignText('right')"><img
+                            src="icons/align-to-right.png"></button>
+                    <button class="btn-align-center" onclick="onAlignText('center')"><img
+                            src="icons/center-text-alignment.png"></button>
+                    <button class="btn-align-left" onclick="onAlignText('left')"><img
+                            src="icons/align-to-left.png"></button>
+                </div>
+
+                <div class="third-box flex row center">
+                    <select class="font-family" onchange="onChangeFont()">
+                        <option>Impact</option>
+                        <option>Arial</option>
+                        <option>monospace</option>
+                        <option>Gill Sans</option>
+                    </select>
+                    <button class="btn-color" onclick="onSetColor()"><img src="icons/text stroke.png"></button>
+                    <input type="color" name="color">
+                </div>
+
+                <div class="forth-box add flex row center">
+                    <input class="line" type="text" placeholder="Add new Line">
+                    <button onclick="onAddLine('line',this)">Add New Line</button>
+                </div>
+
+                <div class="five-box flex row space-evenly align-center">
+                    <div class="arrow-left" onclick="onSetEmojiStart('prev')"><i
+                            class="fas fa-arrow-circle-left fa-2x"></i></div>
+                    <div class="emoji-container flex row space-evenly"></div>
+                    <div class="arrow-right" onclick="onSetEmojiStart('next')"><i
+                            class="fas fa-arrow-circle-right fa-2x"></i></div>
+                </div>
+
+                <div class="six-box flex row center wrap">
+                    <button class="remove-rect" onclick="onToggleRect()">Remove Text Bg</button>
+                    <button onclick="onSaveMyMeme()">💾</button>
+                    <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download iMAGE</a>
+                </div>
+
+                <div class="share-box">
+                    <form class="flex row center" action="" method="POST" enctype="multipart/form-data" 
+                            onsubmit="uploadImg(this, event)">
+                        <button class="btn-share" type="submit">Share</button>
+                        <div class="share"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+
+    <script src="js/util.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
+
+<!-- draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event) -->
